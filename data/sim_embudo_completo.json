@@ -1,0 +1,159 @@
+{
+  "fuentes": {
+    "telegram": "API Telegram vía Telethon — 21,097 posts, ene-may 2026",
+    "amazon": "Amazon Associates — 11 tracking IDs, ene-may 2026"
+  },
+  "periodo": "2026-01-01 / 2026-05-23",
+  "dias": 143,
+  "tracking_ids": 11,
+  "telegram": {
+    "posts_totales": 21097,
+    "vistas_totales": 6613127,
+    "forwards_totales": 7715,
+    "posts_por_dia": 147.5,
+    "vistas_por_post_media": 313.5
+  },
+  "amazon": {
+    "nota_metodologica": "P1 (ene-mar, 90 días) usado íntegro. P2 (mar-may, 84 días): solo fracción única abr-may (53/84) para evitar doble conteo de marzo.",
+    "clics_totales_estimados": 96507,
+    "compras_totales_estimadas": 6027,
+    "ingresos_totales_usd": 96973.87,
+    "ganancias_afiliado_usd": 3149.42,
+    "clics_por_dia": 674.9,
+    "compras_por_dia": 42.1
+  },
+  "embudo_etapas": {
+    "etapa1_publicacion_a_vista": {
+      "distribucion": "LogNormal(mu=5.726, sigma=0.201)",
+      "media_vistas": 313.3,
+      "vistas_por_dia": 46246.0
+    },
+    "etapa2_vista_a_clic": {
+      "tasa_pct": 1.4593,
+      "tasa_decimal": 0.014593,
+      "distribucion": "Bernoulli(p=0.001541)",
+      "interpretacion": "1 de cada 68 vistas genera un clic"
+    },
+    "etapa3_clic_a_compra": {
+      "tasa_pct": 6.25,
+      "tasa_decimal": 0.0625,
+      "distribucion": "Bernoulli(p=0.0625)",
+      "interpretacion": "1 de cada 16 clics resulta en compra",
+      "fuente": "Amazon Associates — dato real, no estimado"
+    },
+    "etapa4_compra": {
+      "ingreso_medio_por_compra_usd": 16.09,
+      "comision_media_pct": 3.25,
+      "ganancia_por_compra_usd": 0.52,
+      "tasa_devolucion_pct": 1.69
+    }
+  },
+  "kpis_canal": {
+    "ingreso_por_post_usd": 4.6,
+    "ganancia_por_post_usd": 0.15,
+    "ingreso_por_clic_usd": 1.0048,
+    "ingreso_total_periodo_usd": 96973.87,
+    "ganancia_total_periodo_usd": 3149.42
+  },
+  "por_tracking_id": {
+    "s73f45227-20": {
+      "clics_p1": 8929,
+      "comprados_p1": 737,
+      "conv_p1": 8.25,
+      "clics_p2": 7860,
+      "comprados_p2": 652,
+      "conv_p2": 8.3,
+      "conv_promedio": 8.27
+    },
+    "elpromohunt0c-20": {
+      "clics_p1": 6353,
+      "comprados_p1": 478,
+      "conv_p1": 7.52,
+      "clics_p2": 6412,
+      "comprados_p2": 475,
+      "conv_p2": 7.41,
+      "conv_promedio": 7.47
+    },
+    "krik0n-20": {
+      "clics_p1": 9672,
+      "comprados_p1": 474,
+      "conv_p1": 4.9,
+      "clics_p2": 11410,
+      "comprados_p2": 544,
+      "conv_p2": 4.77,
+      "conv_promedio": 4.83
+    },
+    "koose-20": {
+      "clics_p1": 5320,
+      "comprados_p1": 430,
+      "conv_p1": 8.08,
+      "clics_p2": 4159,
+      "comprados_p2": 263,
+      "conv_p2": 6.32,
+      "conv_promedio": 7.31
+    },
+    "brunardo-20": {
+      "clics_p1": 6861,
+      "comprados_p1": 422,
+      "conv_p1": 6.15,
+      "clics_p2": 12066,
+      "comprados_p2": 782,
+      "conv_p2": 6.48,
+      "conv_promedio": 6.36
+    },
+    "opmilo21-20": {
+      "clics_p1": 5638,
+      "comprados_p1": 320,
+      "conv_p1": 5.68,
+      "clics_p2": 5705,
+      "comprados_p2": 387,
+      "conv_p2": 6.78,
+      "conv_promedio": 6.23
+    },
+    "hnuol3820-20": {
+      "clics_p1": 6000,
+      "comprados_p1": 235,
+      "conv_p1": 3.92,
+      "clics_p2": 5327,
+      "comprados_p2": 242,
+      "conv_p2": 4.54,
+      "conv_promedio": 4.21
+    },
+    "yennifer3606-20": {
+      "clics_p1": 2320,
+      "comprados_p1": 147,
+      "conv_p1": 6.34,
+      "clics_p2": 2400,
+      "comprados_p2": 139,
+      "conv_p2": 5.79,
+      "conv_promedio": 6.06
+    },
+    "lmolartec3639-20": {
+      "clics_p1": 2077,
+      "comprados_p1": 144,
+      "conv_p1": 6.93,
+      "clics_p2": 2534,
+      "comprados_p2": 160,
+      "conv_p2": 6.31,
+      "conv_promedio": 6.59
+    },
+    "chiriboga6490-20": {
+      "clics_p1": 2021,
+      "comprados_p1": 112,
+      "conv_p1": 5.54,
+      "clics_p2": 1521,
+      "comprados_p2": 73,
+      "conv_p2": 4.8,
+      "conv_promedio": 5.22
+    },
+    "comardex-20": {
+      "clics_p1": 1508,
+      "comprados_p1": 90,
+      "conv_p1": 5.97,
+      "clics_p2": 2875,
+      "comprados_p2": 140,
+      "conv_p2": 4.87,
+      "conv_promedio": 5.25
+    }
+  }
+}
