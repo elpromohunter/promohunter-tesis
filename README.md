@@ -1,124 +1,173 @@
-# El Promo Hunter — Dataset para Modelado de Embudo de Conversión
+# El Promo Hunter — Dataset para Simulación de Embudo de Conversión
 
-Dataset extraído del canal de Telegram **El Promo Hunter** (~5500 suscriptores) para un proyecto universitario de **Modelos y Simulación** (simulación de eventos discretos del embudo: publicación → visualización → clic → compra).
+Dataset completo y parámetros calibrados del canal de Telegram **El Promo Hunter** (@ElPromoHunter, ~5500 suscriptores) para un proyecto universitario de **Modelos y Simulación** (simulación de eventos discretos).
 
-## Descripción del canal
+## Embudo modelado
 
-Canal de marketing de afiliados de Amazon en Colombia. Publica ofertas de productos con imagen, calificación, precio original, precio con descuento, cupón y link de afiliado (`amzn.to`).
+```
+Publicación ──→ Visualización ──→ Clic/Forward ──→ Compra
+   (λ posts/h)    (LogNormal)      (Bernoulli p)   (literatura)
+```
 
-## Datos extraídos
+## Datos clave calibrados
 
-**Período:** 1 enero 2026 → 23 mayo 2026  
-**Total mensajes:** 21,097  
-**Total vistas:** 6,613,127  
-**Vistas promedio por post:** 313.5
+| Parámetro | Valor |
+|---|---|
+| Período | 2026-01-01 → 2026-05-23 (143 días) |
+| Posts totales | 21,097 |
+| Posts/día promedio | **146.5** |
+| Tiempo entre posts | **Gamma(shape=0.37, scale=13.4) min** |
+| Distribución de vistas | **LogNormal(μ=5.726, σ=0.201)** |
+| Vistas media/post | 313.3 |
+| Vistas mediana/post | 302.0 |
+| CTR proxy (forward rate) | **0.118%** |
+| Boost por cupón | ×1.13 CTR |
+
+---
 
 ## Estructura del repositorio
 
 ```
 data/
-├── mensajes_telegram.csv      # Dataset principal (21,097 filas, sin texto crudo)
-├── mensajes_completos.json    # Igual + texto completo de cada mensaje
-├── estadisticas_canal.json    # Estadísticas nativas de Telegram (GetBroadcastStatsRequest)
-└── resumen_extraccion.json    # Resumen agregado: vistas por hora, día, categoría
+│
+│── Datos brutos
+│   ├── mensajes_telegram.csv          # 21,097 filas — dataset completo por mensaje
+│   ├── mensajes_completos.json        # Igual + texto crudo de cada post
+│   ├── estadisticas_canal.json        # Stats nativas de Telegram (API)
+│   └── resumen_extraccion.json        # Resumen agregado (vistas/hora/día/categoría)
+│
+└── Archivos para simulación (prefijo sim_)
+    ├── sim_parametros_maestro.json    # ★ Archivo principal — todos los parámetros
+    ├── sim_tabla_horaria.csv          # λ, vistas, CTR proxy por hora Colombia
+    ├── sim_tabla_dia_semana.csv       # λ, vistas, CTR proxy por día de semana
+    ├── sim_tabla_categoria.csv        # Parámetros por categoría de producto
+    ├── sim_llegada_por_hora.csv       # Posts esperados por hora (proceso Poisson)
+    ├── sim_llegada_por_dia.csv        # Posts esperados por día de semana
+    └── sim_lambda_matriz_dia_hora.csv # Matriz λ[día × hora] para NHPP
 
 scripts/
-├── extractor.py               # Extrae mensajes del canal vía Telethon
-└── reparser.py                # Re-parsea el JSON con regex ajustados al formato real
+    ├── extractor.py                   # Extrae mensajes de Telegram vía Telethon
+    ├── reparser.py                    # Re-parsea JSON con regex ajustados al canal
+    └── calibrar_simulacion.py         # Ajusta distribuciones y genera archivos sim_*
 ```
+
+---
+
+## Parámetros de simulación
+
+### Etapa 1 — Llegada de publicaciones (Poisson no homogéneo)
+
+- **λ global:** 146.5 posts/día ≈ 6.1 posts/hora
+- **Tiempo entre posts:** Gamma(shape=0.37, scale=13.4) min  *(media=4.97 min)*
+- **Variación horaria:** ver `sim_tabla_horaria.csv` y `sim_lambda_matriz_dia_hora.csv`
+- **Días con más actividad:** Domingo y Lunes (~15% más posts que Jueves)
+
+| Hora Colombia | λ posts/día | Vistas promedio |
+|---|---|---|
+| 8–9h | 5.3 | 339 |
+| 10–15h | ~10 | 288–324 |
+| 16–20h | ~12 | 292–386 |
+| 21–23h | 0.7 | 510–599 |
+
+### Etapa 2 — Distribución de vistas por post
+
+- **Distribución ajustada:** LogNormal(μ=5.726, σ=0.201)  *(mejor KS=0.061)*
+- **Media:** 313 vistas · **Mediana:** 302 vistas · **Std:** 101
+- **Percentiles:** P5=171 · P25=251 · P75=367 · P95=495
+
+**Factores multiplicadores sobre la media:**
+
+| Variable | Efecto |
+|---|---|
+| Descuento 36-50% | ×1.02 |
+| Descuento 51-65% | ×0.98 |
+| Rating 4.8-5.0 | ×1.04 |
+| Rating < 3.5 | ×0.88 |
+| Con media/imagen | ×1.01 |
+| Tecnología | ×1.013 |
+| Salud/Belleza | ×0.979 |
+
+### Etapa 3 — Clic en link (proxy forward rate)
+
+> Telegram no provee clics en links. Se usa `forwards/views` como proxy de usuarios que compartieron el post (alta intención de compra).
+
+- **Tasa global:** p = 0.00118 (Bernoulli)
+- **Con cupón:** p = 0.00126 · **Sin cupón:** p = 0.00112
+- **Distribución:** Bernoulli(p) por cada vista
+
+| Categoría | Forward rate |
+|---|---|
+| Tecnología | 0.00124 |
+| Hogar | 0.00118 |
+| Ropa | 0.00112 |
+| Salud/Belleza | 0.00109 |
+
+### Etapa 4 — Compra
+
+No observable desde Telegram. Fuentes recomendadas:
+- **Amazon Associates** → Informes → Clics y pedidos por tag de afiliado
+- **Literatura:** conversión afiliados Amazon ≈ 3–8% de clics resultan en compra
+- Para calibrar: `compras / forwards` una vez se tenga data de Associates
+
+---
 
 ## Campos del dataset (`mensajes_telegram.csv`)
 
 | Campo | Descripción |
 |---|---|
-| `message_id` | ID único del mensaje en Telegram |
-| `fecha_utc` | Fecha/hora UTC (ISO 8601) |
-| `fecha_col` | Fecha/hora hora Colombia (UTC-5) |
-| `hora_col` | Hora en Colombia (0–23) |
-| `dia_semana` | Día de semana en español |
-| `dia_num` | Día numérico (0=Lunes, 6=Domingo) |
-| `views` | Vistas del mensaje |
-| `forwards` | Reenvíos del mensaje |
+| `message_id` | ID único en Telegram |
+| `fecha_utc` / `fecha_col` | Timestamp UTC y hora Colombia (UTC-5) |
+| `hora_col` | Hora Colombia (0–23) |
+| `dia_semana` | Lunes … Domingo |
+| `views` | Vistas acumuladas del post |
+| `forwards` | Reenvíos (proxy CTR) |
 | `tiene_media` | `True` si tiene imagen/video |
-| `rating` | Calificación del producto (ej: 4.5) |
+| `rating` | Calificación del producto |
 | `precio_original` | Precio original en COP |
 | `precio_descuento` | Precio con descuento en COP |
-| `pct_descuento` | Porcentaje de descuento |
-| `tiene_cupon` | `True` si tiene código cupón |
-| `codigo_cupon` | Código del cupón (si aplica) |
-| `link_amazon` | URL corta `amzn.to` |
-| `categoria` | Categoría inferida del producto |
-| `es_producto` | `True` si es publicación de producto |
+| `pct_descuento` | % de descuento calculado |
+| `tiene_cupon` | `True` si tiene código de cupón |
+| `codigo_cupon` | Código del cupón |
+| `link_amazon` | URL `amzn.to` |
+| `categoria` | tecnología / hogar / salud-belleza / ropa / juguetes / deportes / otra |
+| `es_producto` | `True` si es post de producto |
 
-## Resumen estadístico
+> **Nota de precios:** los valores están en **pesos colombianos (COP)**. El punto es separador de miles. Ejemplo: `$105.407` = 105,407 COP ≈ $26 USD.
 
-### Métricas clave
-| Métrica | Valor |
-|---|---|
-| Rating medio | 4.48 / 5.0 |
-| Precio descuento medio | $105,407 COP |
-| Precio original medio | $164,426 COP |
-| % descuento medio | 45.5% |
-| Posts con cupón | 9,602 (45.5%) |
+---
 
-### Vistas por categoría
-| Categoría | Posts | Vistas/post |
-|---|---|---|
-| Tecnología | 6,443 | 317.3 |
-| Hogar | 3,435 | 312.6 |
-| Salud/Belleza | 1,705 | 307.6 |
-| Ropa | 1,626 | 310.6 |
-| Juguetes | 720 | 312.8 |
-| Deportes | 242 | 315.4 |
+## Cómo usar los archivos de simulación
 
-### Vistas por día de semana
-| Día | Vistas promedio |
-|---|---|
-| Domingo | 340.1 |
-| Lunes | 335.8 |
-| Martes | 326.7 |
-| Miércoles | 308.0 |
-| Sábado | 297.9 |
-| Viernes | 297.1 |
-| Jueves | 296.1 |
+```python
+import json, pandas as pd
 
-### Horas con más vistas (hora Colombia)
-Las horas de madrugada (1–3h) acumulan el doble de vistas por post que el horario diurno, aunque concentran muy pocos posts. El horario de mayor volumen es 9h–20h.
+# Cargar todos los parámetros
+with open("data/sim_parametros_maestro.json") as f:
+    params = json.load(f)
 
-## Uso
+# Distribución de vistas
+mu    = params["vistas_por_post"]["lognormal_mu"]     # 5.726
+sigma = params["vistas_por_post"]["lognormal_sigma"]  # 0.201
+# numpy: np.random.lognormal(mu, sigma)
 
-### Requisitos
+# Tasa de llegada por hora
+lambda_hora = params["llegada_publicaciones"]["lambda_por_hora_global"]
+# lambda_hora["10"] → posts esperados a las 10h
+
+# CTR proxy
+p_ctr = params["forwards_ctr_proxy"]["fwd_rate_global"]  # 0.00118
+
+# Tabla horaria completa
+df_hora = pd.read_csv("data/sim_tabla_horaria.csv")
+```
+
+---
+
+## Reproducir la extracción
+
 ```bash
-pip install telethon pandas openpyxl
+pip install telethon pandas openpyxl scipy matplotlib
+python scripts/extractor.py        # Requiere api_id, api_hash de my.telegram.org/apps
+python scripts/reparser.py         # Re-parsea sin reconectarse a Telegram
+python scripts/calibrar_simulacion.py  # Regenera todos los archivos sim_*
 ```
-
-### Re-extraer datos frescos
-```bash
-python scripts/extractor.py
-# Pide api_id, api_hash y teléfono — obtenerlos en https://my.telegram.org/apps
-```
-
-### Re-parsear sin reconectarse a Telegram
-```bash
-python scripts/reparser.py
-```
-
-## Contexto académico
-
-Este dataset se usa para calibrar distribuciones de probabilidad en un modelo de simulación de eventos discretos del embudo de conversión de un canal de afiliados:
-
-```
-Publicación → Visualización → Clic en link → Compra
-```
-
-Las variables clave para la simulación son:
-- Tasa de llegada de vistas (distribución por hora/día)
-- Probabilidad de clic según categoría, descuento y rating
-- Efecto del cupón en conversión
-
-## Notas
-
-- Los precios están en **pesos colombianos (COP)**
-- El punto (`.`) en los precios es **separador de miles**, no decimal (ej: `$18.773` = 18,773 COP ≈ $4.5 USD)
-- Las vistas de Telegram son acumulativas (no por sesión)
-- Los datos de clics reales en links de afiliado están en Amazon Associates, no en Telegram

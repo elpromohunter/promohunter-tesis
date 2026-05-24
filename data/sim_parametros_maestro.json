@@ -1,0 +1,530 @@
+{
+  "canal": "El Promo Hunter (@ElPromoHunter)",
+  "periodo": "2026-01-01 / 2026-05-23",
+  "total_mensajes": 21097,
+  "total_productos": 21081,
+  "dias_observados": 144,
+  "semanas_observadas": 20.6,
+  "llegada_publicaciones": {
+    "descripcion": "Proceso de Poisson no homogéneo. Lambda = posts esperados por hora.",
+    "dias_observados": 144,
+    "semanas_observadas": 20.6,
+    "posts_por_dia_promedio": 146.5,
+    "lambda_por_hora_global": {
+      "0": 1.167,
+      "1": 0.375,
+      "2": 0.09,
+      "3": 0.014,
+      "4": 0.125,
+      "6": 0.014,
+      "7": 0.625,
+      "8": 5.236,
+      "9": 7.611,
+      "10": 9.896,
+      "11": 11.215,
+      "12": 12.111,
+      "13": 12.16,
+      "14": 12.257,
+      "15": 12.132,
+      "16": 12.16,
+      "17": 12.111,
+      "18": 12.215,
+      "19": 12.104,
+      "20": 12.139,
+      "21": 0.667,
+      "22": 0.062,
+      "23": 0.021
+    },
+    "lambda_por_dia_semana": {
+      "Domingo": 124.444,
+      "Jueves": 165.229,
+      "Lunes": 132.076,
+      "Martes": 162.653,
+      "Miércoles": 143.16,
+      "Sábado": 146.125,
+      "Viernes": 151.861
+    },
+    "lambda_matriz_dia_hora": {
+      "Lunes": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.049,
+        "4": 0.0,
+        "6": 0.049,
+        "7": 0.924,
+        "8": 4.424,
+        "9": 7.389,
+        "10": 9.382,
+        "11": 10.549,
+        "12": 10.84,
+        "13": 10.986,
+        "14": 10.938,
+        "15": 10.5,
+        "16": 10.84,
+        "17": 11.278,
+        "18": 10.986,
+        "19": 10.938,
+        "20": 11.229,
+        "21": 0.632,
+        "22": 0.146,
+        "23": 0.0
+      },
+      "Martes": {
+        "0": 8.118,
+        "1": 2.576,
+        "2": 0.486,
+        "3": 0.049,
+        "4": 0.778,
+        "6": 0.0,
+        "7": 0.826,
+        "8": 10.549,
+        "9": 8.361,
+        "10": 9.382,
+        "11": 10.792,
+        "12": 12.104,
+        "13": 12.25,
+        "14": 12.347,
+        "15": 12.007,
+        "16": 12.299,
+        "17": 12.347,
+        "18": 12.201,
+        "19": 12.056,
+        "20": 12.444,
+        "21": 0.632,
+        "22": 0.049,
+        "23": 0.0
+      },
+      "Miércoles": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.097,
+        "3": 0.0,
+        "4": 0.0,
+        "6": 0.0,
+        "7": 0.583,
+        "8": 5.736,
+        "9": 7.875,
+        "10": 10.16,
+        "11": 11.569,
+        "12": 11.764,
+        "13": 11.618,
+        "14": 11.91,
+        "15": 11.618,
+        "16": 11.812,
+        "17": 11.667,
+        "18": 11.715,
+        "19": 12.104,
+        "20": 12.25,
+        "21": 0.632,
+        "22": 0.0,
+        "23": 0.049
+      },
+      "Jueves": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.049,
+        "3": 0.0,
+        "4": 0.0,
+        "6": 0.0,
+        "7": 0.194,
+        "8": 4.521,
+        "9": 8.847,
+        "10": 11.521,
+        "11": 13.319,
+        "12": 13.951,
+        "13": 13.903,
+        "14": 14.049,
+        "15": 14.097,
+        "16": 14.049,
+        "17": 13.757,
+        "18": 14.146,
+        "19": 13.903,
+        "20": 14.194,
+        "21": 0.583,
+        "22": 0.049,
+        "23": 0.097
+      },
+      "Viernes": {
+        "0": 0.049,
+        "1": 0.049,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "6": 0.0,
+        "7": 0.437,
+        "8": 4.472,
+        "9": 8.118,
+        "10": 10.354,
+        "11": 11.91,
+        "12": 12.542,
+        "13": 13.028,
+        "14": 12.931,
+        "15": 12.931,
+        "16": 12.931,
+        "17": 12.833,
+        "18": 12.979,
+        "19": 12.833,
+        "20": 12.444,
+        "21": 1.021,
+        "22": 0.0,
+        "23": 0.0
+      },
+      "Sábado": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.097,
+        "6": 0.0,
+        "7": 0.681,
+        "8": 2.868,
+        "9": 7.049,
+        "10": 10.792,
+        "11": 11.132,
+        "12": 12.979,
+        "13": 12.59,
+        "14": 12.833,
+        "15": 13.076,
+        "16": 12.396,
+        "17": 12.299,
+        "18": 12.785,
+        "19": 12.153,
+        "20": 11.91,
+        "21": 0.486,
+        "22": 0.0,
+        "23": 0.0
+      },
+      "Domingo": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "6": 0.049,
+        "7": 0.729,
+        "8": 4.083,
+        "9": 5.639,
+        "10": 7.681,
+        "11": 9.236,
+        "12": 10.597,
+        "13": 10.743,
+        "14": 10.792,
+        "15": 10.694,
+        "16": 10.792,
+        "17": 10.597,
+        "18": 10.694,
+        "19": 10.743,
+        "20": 10.5,
+        "21": 0.681,
+        "22": 0.194,
+        "23": 0.0
+      }
+    }
+  },
+  "vistas_por_post": {
+    "descripcion": "Distribución de vistas por publicación (solo posts de producto).",
+    "n": 21081,
+    "media": 313.3,
+    "mediana": 302.0,
+    "desv_std": 69.3,
+    "p5": 232.0,
+    "p25": 271.0,
+    "p75": 339.0,
+    "p95": 438.0,
+    "max": 1081.0,
+    "mejor_distribucion": "lognormal",
+    "lognormal_mu": 5.726,
+    "lognormal_sigma": 0.201,
+    "lognormal_nota": "X ~ LogNormal(mu, sigma) donde mu=E[ln(X)], sigma=Std[ln(X)]",
+    "fits": {
+      "lognormal": {
+        "params": [
+          0.2403361871153621,
+          50.023070208323404,
+          255.5084802281946
+        ],
+        "ks_statistic": 0.061,
+        "ks_pvalue": 0.0
+      },
+      "gamma": {
+        "params": [
+          12.070522004109632,
+          89.86652457020345,
+          18.509417004917424
+        ],
+        "ks_statistic": 0.071,
+        "ks_pvalue": 0.0
+      },
+      "exponential": {
+        "params": [
+          104.0,
+          209.28485365969357
+        ],
+        "ks_statistic": 0.4104,
+        "ks_pvalue": 0.0
+      },
+      "normal": {
+        "params": [
+          313.28485365969357,
+          69.32725935175868
+        ],
+        "ks_statistic": 0.1094,
+        "ks_pvalue": 0.0
+      },
+      "weibull": {
+        "params": [
+          0.8425310439733169,
+          103.99999999999997,
+          94.2650630370394
+        ],
+        "ks_statistic": 0.6783,
+        "ks_pvalue": 0.0
+      }
+    },
+    "factor_multiplicador_hora": {
+      "0": 1.2531,
+      "1": 1.614,
+      "2": 2.0838,
+      "3": 2.9717,
+      "4": 1.2048,
+      "6": 1.3981,
+      "7": 1.2405,
+      "8": 1.0823,
+      "9": 1.0349,
+      "10": 1.0095,
+      "11": 0.9635,
+      "12": 0.9478,
+      "13": 0.9306,
+      "14": 0.9232,
+      "15": 0.9191,
+      "16": 0.9318,
+      "17": 0.9478,
+      "18": 0.9819,
+      "19": 1.0535,
+      "20": 1.233,
+      "21": 1.6179,
+      "22": 1.6359
+    },
+    "factor_multiplicador_dia": {
+      "Domingo": 1.0842,
+      "Jueves": 0.9443,
+      "Lunes": 1.071,
+      "Martes": 1.0424,
+      "Miércoles": 0.9825,
+      "Sábado": 0.9509,
+      "Viernes": 0.9483
+    },
+    "percentiles_5pct": {
+      "p0": 104.0,
+      "p5": 232.0,
+      "p10": 247.0,
+      "p15": 256.0,
+      "p20": 264.0,
+      "p25": 271.0,
+      "p30": 278.0,
+      "p35": 284.0,
+      "p40": 290.0,
+      "p45": 296.0,
+      "p50": 302.0,
+      "p55": 309.0,
+      "p60": 316.0,
+      "p65": 323.0,
+      "p70": 331.0,
+      "p75": 339.0,
+      "p80": 349.0,
+      "p85": 363.0,
+      "p90": 388.0,
+      "p95": 438.0,
+      "p100": 1081.0
+    }
+  },
+  "forwards_ctr_proxy": {
+    "descripcion": "Tasa forward/vistas como proxy de CTR (click-through rate). Telegram no provee clics reales en links.",
+    "fwd_rate_global": 0.00118,
+    "fwd_rate_con_cupon": 0.00126,
+    "fwd_rate_sin_cupon": 0.00112,
+    "multiplicador_cupon": 1.13,
+    "fwd_rate_por_hora": {
+      "0": 0.00215,
+      "1": 0.0013,
+      "2": 0.00049,
+      "3": 0.0,
+      "4": 0.00199,
+      "6": 0.00227,
+      "7": 0.001,
+      "8": 0.00144,
+      "9": 0.00134,
+      "10": 0.00116,
+      "11": 0.00119,
+      "12": 0.00117,
+      "13": 0.00123,
+      "14": 0.00111,
+      "15": 0.00116,
+      "16": 0.00118,
+      "17": 0.00118,
+      "18": 0.00113,
+      "19": 0.00123,
+      "20": 0.00096,
+      "21": 0.00087,
+      "22": 0.00089
+    },
+    "fwd_rate_por_dia": {
+      "Domingo": 0.00112,
+      "Jueves": 0.0012,
+      "Lunes": 0.00132,
+      "Martes": 0.00122,
+      "Miércoles": 0.0012,
+      "Sábado": 0.00112,
+      "Viernes": 0.00109
+    },
+    "fwd_rate_por_categoria": {
+      "deportes": 0.00143,
+      "hogar": 0.00124,
+      "juguetes": 0.001,
+      "otra": 0.00123,
+      "ropa": 0.00135,
+      "salud/belleza": 0.00138,
+      "tecnología": 0.00102
+    }
+  },
+  "factores_sobre_vistas": {
+    "descripcion": "Factores multiplicadores sobre vistas base para la simulación.",
+    "base_vistas": 313.3,
+    "efecto_cupon": {
+      "con_cupon": 313.6,
+      "sin_cupon": 313.1,
+      "multiplicador": 1.002
+    },
+    "efecto_media": {
+      "False": {
+        "vistas_media": 353.0,
+        "n": 5
+      },
+      "True": {
+        "vistas_media": 313.5,
+        "n": 21092
+      }
+    },
+    "efecto_descuento_pct": {
+      "0-20%": {
+        "vistas_media": 314.1,
+        "n": 1800
+      },
+      "21-35%": {
+        "vistas_media": 312.4,
+        "n": 3258
+      },
+      "36-50%": {
+        "vistas_media": 312.0,
+        "n": 8990
+      },
+      "51-65%": {
+        "vistas_media": 313.2,
+        "n": 4804
+      },
+      "66-100%": {
+        "vistas_media": 317.4,
+        "n": 1939
+      }
+    },
+    "efecto_rating": {
+      "<3.5": {
+        "vistas_media": 333.8,
+        "n": 16
+      },
+      "3.5-4.0": {
+        "vistas_media": 317.8,
+        "n": 692
+      },
+      "4.0-4.5": {
+        "vistas_media": 313.6,
+        "n": 12152
+      },
+      "4.5-4.8": {
+        "vistas_media": 311.6,
+        "n": 7164
+      },
+      "4.8-5.0": {
+        "vistas_media": 316.9,
+        "n": 1007
+      }
+    },
+    "efecto_categoria": {
+      "salud/belleza": {
+        "vistas_media": 307.6,
+        "n": 1705,
+        "multiplicador": 0.982
+      },
+      "deportes": {
+        "vistas_media": 315.4,
+        "n": 242,
+        "multiplicador": 1.007
+      },
+      "hogar": {
+        "vistas_media": 312.6,
+        "n": 3435,
+        "multiplicador": 0.998
+      },
+      "tecnología": {
+        "vistas_media": 317.3,
+        "n": 6443,
+        "multiplicador": 1.013
+      },
+      "otra": {
+        "vistas_media": 311.9,
+        "n": 6910,
+        "multiplicador": 0.996
+      },
+      "ropa": {
+        "vistas_media": 310.6,
+        "n": 1626,
+        "multiplicador": 0.991
+      },
+      "juguetes": {
+        "vistas_media": 312.8,
+        "n": 720,
+        "multiplicador": 0.998
+      }
+    }
+  },
+  "tiempo_entre_publicaciones_min": {
+    "descripcion": "Tiempo entre publicaciones consecutivas (minutos). Filtrado: solo gaps ≤ 120 min (excluye pausa nocturna).",
+    "n": 20904,
+    "media_min": 4.97,
+    "mediana_min": 4.93,
+    "desv_std_min": 3.25,
+    "p5_min": 1.7,
+    "p95_min": 9.07,
+    "exponential": {
+      "scale": 4.971,
+      "ks_stat": 0.2967,
+      "nota": "T ~ Exp(scale). scale = 1/lambda. Lambda = posts/min."
+    },
+    "gamma": {
+      "shape": 3.003,
+      "scale": 1.655,
+      "ks_stat": 0.1171
+    },
+    "mejor": "gamma"
+  },
+  "embudo_estimado": {
+    "descripcion": "Parámetros del embudo de conversión. Etapa 1→2 usa distribución de vistas. Etapa 2→3 usa forward_rate como proxy CTR. Etapa 3→4 (compra) no observable desde Telegram — usar literatura o Amazon Associates.",
+    "etapa1_publicacion_a_vista": {
+      "distribucion": "LogNormal",
+      "mu": 5.726,
+      "sigma": 0.201,
+      "media_esperada": 313.3
+    },
+    "etapa2_vista_a_forward": {
+      "tasa_global": 0.00118,
+      "distribucion": "Bernoulli(p=fwd_rate)",
+      "nota": "forward ≈ usuario que compartió el link (proxy de clic alto-intención)"
+    },
+    "etapa3_forward_a_compra": {
+      "tasa_estimada": null,
+      "fuente_recomendada": "Amazon Associates → Informes → Clics y pedidos",
+      "literatura_referencia": "CTR afiliados Amazon típico: 3-8% de clics resultan en compra"
+    }
+  }
+}
